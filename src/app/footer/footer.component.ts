@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-footer',
@@ -7,7 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private toastr: ToastrService
+  ) { }
+
+  showToast() {
+    navigator.clipboard.writeText('hello@snorkelology.co.uk').then( () => {
+      this.toastr.info('Email copied to clipboard', '', {
+        closeButton: true,
+        tapToDismiss: true,
+        positionClass: 'toast-bottom-right'
+      });
+    })
+
+  }
 
   ngOnInit(): void {
   }
